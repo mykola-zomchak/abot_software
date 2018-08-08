@@ -1,4 +1,4 @@
-from point import Point
+from models.point import Point
 
 
 class Character(Point):
