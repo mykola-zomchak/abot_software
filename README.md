@@ -1,6 +1,6 @@
 # Project Title
 
-A simple bot that uses opencv to analize screenshot of Pac-Man field and make desigion on where to move in real time.
+N.O.O.B(Not Ordinal Opensource Bot) is simple bot that uses opencv to analize screenshot of Pac-Man field and make desigion on where to move in real time.
 
 ## Getting Started
 
