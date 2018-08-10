@@ -5,7 +5,7 @@ from parsers.pacman_parser import PacmanParser
 import time
 
 how_long = 30
-shooter = ss.shooter()
+shooter = ss.Screenshooter()
 parser = PacmanParser()
 bot = CrazyBot()
 
