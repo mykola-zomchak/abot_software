@@ -1,16 +1,20 @@
-import screenshoter as ss
+import screenshooter as ss
 from bots.crazy_bot import CrazyBot
 from game import Game
-from image_parser import field
+from parsers.pacman_parser import PacmanParser
 import time
 
 how_long = 10
 shooter = ss.ScreenShooter()
+parser = PacmanParser()
 bot = CrazyBot()
-with Game() as game:
+
+with Game() as _:
     start = time.time()
     while time.time() - start < how_long:
+
         image = shooter.get_screen()
-        parsed = field(image)
-        action = bot.get_action(parsed)
+        parsed = parser.parse(image)
+        action = bot.get_action()
         action()
+        time.sleep(.5)
