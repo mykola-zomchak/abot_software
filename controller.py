@@ -20,5 +20,5 @@ with Game() as _:
         change_window()
         parsed = parser.parse(image)
         action = bot.get_action()
-        time.sleep(.03)
+        time.sleep(.05)
         action()
