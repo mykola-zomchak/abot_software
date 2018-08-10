@@ -12,6 +12,7 @@ class Game:
 
     def __enter__(self):
         self.driver = webdriver.Chrome(DRIVER_LOCATION)
+        self.driver.set_window_rect(GAME_X, GAME_Y, GAME_WIDTH, GAME_HEIGHT)
         self.driver.get(GAME_URL)
         return self
 
