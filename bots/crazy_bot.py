@@ -10,5 +10,5 @@ class CrazyBot(Bot):
     def __init__(self):
         self.actions = [go_left, go_right, go_up, go_down]
 
-    def get_action(self) -> FunctionType:
+    def get_action(self):
         return random.choice(self.actions)

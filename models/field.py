@@ -15,3 +15,4 @@ class Field:
         self.round = round
         self.score = score
         self.lives = lives
+        self.image = None

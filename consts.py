@@ -1,4 +1,5 @@
-import os
-
-GAME_URL = 'file:///' + os.getcwd() + '/game/index.html'
-DRIVER_LOCATION = 'resource/chromedriver.exe'
+GAME_X = 800
+GAME_Y = 0
+GAME_WIDTH = 1100
+GAME_HEIGHT = 1000
+BROWSER_HEADER = 150
