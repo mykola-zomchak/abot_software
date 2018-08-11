@@ -6,7 +6,7 @@ import time
 import cv2
 
 how_long = 10
-shooter = ss.shooter()
+shooter = ss.Screenshooter()
 parser = PacmanParser()
 bot = CrazyBot()
 with Game() as _:
