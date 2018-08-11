@@ -15,10 +15,12 @@ class PacmanParser(ImageParser):
     def parse(self, image: np.ndarray):
         field = Field()
         box = self.__field_rect(image)
-        cropped = image[box[1]:box[1] + box[3], box[0]:box[0] + box[2]].copy()
-        field.pacman = Pacman(*self.__center(self.__pacman_contour(cropped)))
+        cropped = self.__cropp(image, box)
+        pacman = self.__pacman_contour(cropped)
+        field.pacman = Pacman(*self.__center(pacman))
         cv2.circle(cropped, (field.pacman.x, field.pacman.y), 2, (0, 0, 255), 2)
-        return cropped, field
+        field.image = cropped
+        return field
 
     def __walls(self, image: np.ndarray):
         return cv2.inRange(image, WALL_LOWER, WALL_UPPER)
@@ -34,3 +36,6 @@ class PacmanParser(ImageParser):
     def __center(self, contour: np.ndarray):
         M = cv2.moments(contour)
         return int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"])
+
+    def __cropp(self, image: np.ndarray, rect: tuple):
+        return image[rect[1]:rect[1] + rect[3], rect[0]:rect[0] + rect[2]].copy()

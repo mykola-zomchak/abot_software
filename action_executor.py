@@ -24,11 +24,5 @@ def go_down():
     click(Key.down)
 
 
-def change_window():
-    keys.press(Key.alt)
-    click(Key.tab)
-    keys.release(Key.alt)
-
-
 def hit_enter():
     click(Key.enter)
