@@ -6,14 +6,15 @@ import time
 import cv2
 
 how_long = 10
-shooter = ss.Screenshooter()
+shooter = ss.ScreenShooter()
 parser = PacmanParser()
 bot = CrazyBot()
 with Game() as _:
     start = time.time()
     cv2.namedWindow("pacman")
     while time.time() - start < how_long:
-        field = parser.parse(shooter.shot())
+        screen = shooter.get_screen('index.html')
+        field = parser.parse(screen)
         cv2.imshow("pacman", field.image)
         cv2.waitKey(1)
         action = bot.get_action()
