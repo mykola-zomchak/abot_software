@@ -1,19 +1,16 @@
-from pynput.keyboard import Key, Controller
-
-keys = Controller()
-
+import pyautogui
 
 def go_left():
-    keys.press(Key.left)
+    pyautogui.press('left')
 
 
 def go_right():
-    keys.press(Key.right)
+    pyautogui.press('right')
 
 
 def go_up():
-    keys.press(Key.up)
+    pyautogui.press('up')
 
 
 def go_down():
-    keys.press(Key.down)
+    pyautogui.press('down')

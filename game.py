@@ -1,4 +1,3 @@
-from selenium import webdriver
 from consts import *
 
 
@@ -11,9 +10,7 @@ class Game:
         self.__enter__()
 
     def __enter__(self):
-        self.driver = webdriver.Chrome(DRIVER_LOCATION)
-        self.driver.get(GAME_URL)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.driver.close()
+        pass
