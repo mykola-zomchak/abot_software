@@ -1,6 +1,6 @@
 from typing import List
 
-from characters import *
+from models.characters import *
 
 
 class Field:
