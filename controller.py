@@ -13,7 +13,7 @@ with Game() as _:
     start = time.time()
     cv2.namedWindow("pacman")
     while time.time() - start < how_long:
-        screen = shooter.get_screen('index.html')
+        screen = shooter.get_screen('pacman.html')
         field = parser.parse(screen)
         cv2.imshow("pacman", field.image)
         cv2.waitKey(1)

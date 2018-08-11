@@ -2,11 +2,10 @@ from selenium import webdriver
 from consts import *
 from time import sleep
 from action_executor import go_up
+import os
 
-GAME_URL = 'file:///C:/Program%20Files/WindowsApps/40588MidwayStudios.PAC-MANOriginal_4.0.0.0_x64__svrvwanpjnagm' \
-           '/pacman/index.html'
+GAME_URL = 'file:///' + os.getcwd() + '/game/pacman.html'
 DRIVER_LOCATION = 'resource/chromedriver.exe'
-
 
 class Game:
 
