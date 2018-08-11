@@ -14,6 +14,6 @@ with Game() as _:
     while time.time() - start < how_long:
         image = shooter.shot()
         parsed = parser.parse(image)
-        action = bot.get_action(parsed)
+        action = bot.get_action()
         action()
         time.sleep(.5)
