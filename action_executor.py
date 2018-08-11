@@ -29,5 +29,6 @@ def change_window():
     click(Key.tab)
     keys.release(Key.alt)
 
+
 def hit_enter():
     click(Key.enter)

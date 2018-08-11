@@ -7,6 +7,7 @@ GAME_URL = 'file:///C:/Program%20Files/WindowsApps/40588MidwayStudios.PAC-MANOri
            '/pacman/index.html'
 DRIVER_LOCATION = 'resource/chromedriver.exe'
 
+
 class Game:
 
     def __init__(self):
