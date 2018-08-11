@@ -1,6 +1,6 @@
 # Project Title
 
-N.O.O.B(Not Ordinal Opensource Bot) is simple bot that uses opencv to analize screenshot of Pac-Man field and make desigion on where to move in real time.
+N.O.O.B(Not Ordinal Opensource Bot) is simple bot that uses opencv to analize screenshot of Game (Pac-Man) field and make desigion on where to move in real time.
 
 ## Getting Started
 
@@ -8,17 +8,26 @@ N.O.O.B(Not Ordinal Opensource Bot) is simple bot that uses opencv to analize sc
 
 * [python](https://www.python.org) 3.6+
 * [opencv3](https://opencv.org/opencv-3-3.html)
-* [pynput](https://pypi.org/project/pynput)
-* [selenium](https://www.seleniumhq.org)
 * [numpy](http://www.numpy.org)
 * [pyautogui](https://pyautogui.readthedocs.io/en/latest)
 * [Pac-Man](https://www.microsoft.com/en-us/p/pac-man-original/9nblggh5l7vl)
 
 ### Installing
 
-```
-#TODO Reinstall the whole thing and capture process here
-```
+If you use windows and python3 make next steps:
+
+- open windows command line:
+  -  windows key + r
+  -  type cmd
+  -  press enter
+  
+- in opened command line
+  - pip install pyautogui
+  - pip install numpy
+  - pip install opencv-python
+  
+ If you use pychar:
+  File->Settings->Projects:projectname->Project Interpreter-> click on + near the "Latest version" and type opencv-python.
 
 ## Authors
 
