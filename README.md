@@ -21,7 +21,7 @@ If you use windows and python3 make next steps:
   -  type cmd
   -  press enter
   
-- in opened command line
+- at open command line
   - pip install pyautogui
   - pip install numpy
   - pip install opencv-python
