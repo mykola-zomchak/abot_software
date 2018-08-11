@@ -6,19 +6,18 @@ from parsers.pacman_parser import PacmanParser
 import time
 import cv2
 
-how_long = 15
+how_long = 10
 shooter = ss.shooter()
 parser = PacmanParser()
 bot = CrazyBot()
 with Game() as _:
     start = time.time()
+    cv2.namedWindow("pacman")
     while time.time() - start < how_long:
-        image = shooter.shot()
-        cv2.namedWindow("pacman")
+        image, field = parser.parse(shooter.shot())
         cv2.imshow("pacman", image)
         cv2.waitKey(1)
         change_window()
-        parsed = parser.parse(image)
         action = bot.get_action()
-        time.sleep(.05)
+        time.sleep(.01)
         action()
