@@ -7,6 +7,7 @@ import os
 GAME_URL = 'file:///' + os.getcwd() + '/game/pacman.html'
 DRIVER_LOCATION = 'resource/chromedriver.exe'
 
+
 class Game:
 
     def __init__(self):

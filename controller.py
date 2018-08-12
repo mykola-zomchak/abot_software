@@ -5,7 +5,7 @@ from parsers.pacman_parser import PacmanParser
 import time
 import cv2
 
-how_long = 60
+how_long = 100
 shooter = ss.ScreenShooter()
 parser = PacmanParser()
 bot = ScaredBot()
@@ -15,7 +15,8 @@ with Game() as _:
     while time.time() - start < how_long:
         screen = shooter.get_screen('pacman.html')
         field = parser.parse(screen)
-        action = bot.get_action(field)
-        action()
+        actions = bot.get_action(field)
+        for action in actions:
+            action()
         cv2.imshow("pacman", field.image)
         cv2.waitKey(1)
