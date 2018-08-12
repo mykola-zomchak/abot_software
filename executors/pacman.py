@@ -2,6 +2,7 @@ from selenium import webdriver
 from time import sleep
 import os
 
+from action_executor import go_up
 from executors.web_executor import WebExecutor
 
 GAME_URL = 'file:///' + os.getcwd() + '/games/pacman/pacman.html'
@@ -19,6 +20,8 @@ class Pacman(WebExecutor):
         self.driver = webdriver.Chrome(self.driver_location)
         self.driver.set_window_rect(*self.region)
         self.driver.get(GAME_URL)
+        sleep(1)
+        go_up()
         sleep(1)
         return self
 
