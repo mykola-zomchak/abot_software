@@ -9,6 +9,13 @@ class Character(Point):
         self.x = x
         self.y = y
 
+    def update(self, x: int, y:int):
+        if x < 0 or y < 0:
+            return
+        self.x = x
+        self.y = y
+
+
 
 class Pacman(Character):
 
