@@ -7,6 +7,12 @@ class Character(Point):
         super().__init__(x, y)
         self.name = name
 
+    def update(self, x: int, y: int):
+        if x < 0 or y < 0:
+            return
+        self.x = x
+        self.y = y
+
 
 class Pacman(Character):
 
