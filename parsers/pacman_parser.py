@@ -15,7 +15,7 @@ class PacmanParser(ImageParser):
     def parse(self, image: np.ndarray):
         field = Field()
         box = self.__field_rect(image)
-        cropped = self.__cropp(image, box)
+        cropped = self.__cropp(image, box).copy()
         pacman = self.__pacman_contour(cropped)
         field.pacman = Pacman(*self.__center(pacman))
         cv2.circle(cropped, (field.pacman.x, field.pacman.y), 2, (0, 0, 255), 2)
