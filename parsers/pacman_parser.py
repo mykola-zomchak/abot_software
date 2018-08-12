@@ -1,6 +1,5 @@
 import numpy as np
 from models.field import Field
-from models.characters import *
 from parsers.image_parser import ImageParser
 import cv2
 
@@ -40,9 +39,6 @@ class PacmanParser(ImageParser):
         _, contours, h = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
         if len(contours) == 0:
             return None
-        # cv2.imshow('mask', mask)
-        # cv2.imwrite('ignored.jpg', mask)
-        # cv2.waitKey(0)
         return max(contours, key=lambda c: cv2.contourArea(c))
 
     def _center(self, contour: np.ndarray):
