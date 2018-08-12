@@ -14,11 +14,11 @@ class PacmanParser(ImageParser):
         cropped = self._cropp(hsv, box)
 
         pacman = self._contour(cropped, PACMAN_LOWER, PACMAN_UPPER)
-        field.update_pacman(self._center(pacman) if pacman is not None else (-1,-1))
+        field.update_pacman(self._center(pacman) if pacman is not None else (-1, -1))
 
         ghosts = tuple((g[0], self._contour(cropped, g[1], g[2])) for g in GHOSTS)
         for ghost in ghosts:
-            field.update_ghost(ghost[0], self._center(ghost[1]) if ghost[1] is not None else (-1,-1))
+            field.update_ghost(ghost[0], self._center(ghost[1]) if ghost[1] is not None else (-1, -1))
 
         for g in field.ghosts.values():
             cv2.circle(image, (g.x, g.y), 2, (0, 0, 0), 2)
@@ -33,26 +33,31 @@ class PacmanParser(ImageParser):
     def _field_rect(self, image: np.ndarray):
         return cv2.boundingRect(self._walls(image))
 
-    def _contour(self, image: np.ndarray, lower: np.ndarray, upper: np.ndarray):
+    def _contours(self, image: np.ndarray, lower: np.ndarray, upper: np.ndarray, min_area=None):
         mask = cv2.inRange(image, lower, upper)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, KERNEL)
-        _, contours, h = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        if mask is None:
+            return []
+        contours = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[1]
+        if min_area is None:
+            return contours
+        return filter(lambda c: cv2.contourArea(c) >= min_area, contours)
+
+    def _contour(self, image: np.ndarray, lower: np.ndarray, upper: np.ndarray):
+        contours = self._contours(image, lower, upper)
         if len(contours) == 0:
             return None
         return max(contours, key=lambda c: cv2.contourArea(c))
 
     def _center(self, contour: np.ndarray):
         M = cv2.moments(contour)
-        return int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"])
+        try:
+            return int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"])
+        except ZeroDivisionError:
+            return contour[0][0]
 
     def _cropp(self, image: np.ndarray, rect: tuple):
         return image[rect[1]:rect[1] + rect[3], rect[0]:rect[0] + rect[2]].copy()
 
-
-KERNEL = np.array([[0, 1, 1, 0],
-                   [1, 1, 1, 1],
-                   [1, 1, 1, 1],
-                   [0, 1, 1, 0]], dtype=np.uint8)
 
 PACMAN_LOWER = np.array((25, 160, 140))
 PACMAN_UPPER = np.array((40, 255, 255))
