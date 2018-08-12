@@ -4,15 +4,21 @@ from models.characters import *
 
 
 class Field:
-    def __init__(self, pacman: Pacman = None, enemies: List[Ghost] = None, bonus: bool = False,
-                 cookies: List[Point] = None, powerups: List[Point] = None, round: int = 1, score: int = 0,
-                 lives: int = 2):
-        self.pacman = pacman
-        self.enemies = enemies
-        self.has_bonus = bonus
-        self.cookies = cookies
-        self.powerups = powerups
-        self.round = round
-        self.score = score
-        self.lives = lives
+    def __init__(self):
+        self.pacman = Pacman()
+        self.ghosts = {g: Ghost(g) for g in GHOSTS}
+        self.has_bonus = False
+        self.cookies = []
+        self.powerups = []
+        self.round = 1
+        self.score = 0
+        self.lives = 2
         self.image = None
+
+    def update_pacman(self, coordinates):
+        self.pacman.update(*coordinates)
+
+    def update_ghost(self, name,  coordinates):
+        self.ghosts[name].update(*coordinates)
+
+GHOSTS = ('Blinky', 'Pinky', 'Inky', 'Clyde')
