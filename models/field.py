@@ -18,7 +18,8 @@ class Field:
     def update_pacman(self, coordinates):
         self.pacman.update(*coordinates)
 
-    def update_ghost(self, name,  coordinates):
+    def update_ghost(self, name, coordinates):
         self.ghosts[name].update(*coordinates)
+
 
 GHOSTS = ('Blinky', 'Pinky', 'Inky', 'Clyde')
