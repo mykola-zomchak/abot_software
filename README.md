@@ -15,7 +15,7 @@ N.O.O.B(Not Ordinal Opensource Bot) is simple bot that uses opencv to analize sc
 
 ### Installing
 
-open command line of terminal
+open command line or terminal
 
 Make next steps:
 - at open command line or terminal 
