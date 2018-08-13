@@ -13,6 +13,8 @@ class Character(Point):
         self.x = x
         self.y = y
 
+    def xy(self):
+        return self.x, self.y
 
 class Pacman(Character):
 
