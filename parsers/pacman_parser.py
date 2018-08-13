@@ -24,6 +24,7 @@ class PacmanParser(ImageParser):
             cv2.circle(image, (g.x, g.y), 2, (0, 0, 0), 2)
         cv2.circle(image, (field.pacman.x, field.pacman.y), 2, (0, 0, 255), 2)
 
+        field.cookies = self._cookies(cropped)
         field.image = image
         return field
 
@@ -32,7 +33,7 @@ class PacmanParser(ImageParser):
 
     def _field_rect(self, image: np.ndarray):
         return cv2.boundingRect(self._walls(image))
-
+    
     def _contour(self, image: np.ndarray, lower: np.ndarray, upper: np.ndarray):
         mask = cv2.inRange(image, lower, upper)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, KERNEL)
@@ -40,7 +41,18 @@ class PacmanParser(ImageParser):
         if len(contours) == 0:
             return None
         return max(contours, key=lambda c: cv2.contourArea(c))
-
+    
+    def _cookies(self, image: np.ndarray) -> list:
+        mask = cv2.inRange(image, COOKIE_LOWER_HSV, COOKIE_UPPER_HSV)
+        
+        kernel_square = np.ones((2,2), np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel_square)
+        kernel_ellipse = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3)) 
+        mask = cv2.dilate(mask, kernel_ellipse, iterations=1)
+        
+        contours = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
+        return [self._center (c) for c in contours]
+    
     def _center(self, contour: np.ndarray):
         M = cv2.moments(contour)
         return int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"])
