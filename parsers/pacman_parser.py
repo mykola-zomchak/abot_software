@@ -70,6 +70,8 @@ PACMAN_LOWER = np.array((25, 160, 140))
 PACMAN_UPPER = np.array((40, 255, 255))
 WALL_LOWER = np.array((110, 190, 190))
 WALL_UPPER = np.array((120, 230, 255))
+COOKIE_LOWER_HSV = (160, 0, 0)
+COOKIE_UPPER_HSV = (170, 70, 250)
 
 GHOSTS = (('Blinky', np.array((130, 100, 210)), np.array((180, 255, 255))),
           ('Pinky', np.array((160, 50, 50)), np.array((180, 100, 255))),
