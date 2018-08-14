@@ -22,7 +22,7 @@ class Pacman(WebExecutor):
         self.driver.get(GAME_URL)
         sleep(1)
         go_up()
-        sleep(1)
+        sleep(2)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
