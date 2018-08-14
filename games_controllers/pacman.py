@@ -4,8 +4,11 @@ from time import sleep
 from action_executor import go_up
 import os
 
-GAME_URL = 'file:///' + os.getcwd() + '/game/pacman.html'
-DRIVER_LOCATION = 'resource/chromedriver.exe'
+path = os.getcwd()
+project_dir = path
+
+GAME_URL = 'file:///' + project_dir + '/games/pacman/pacman.html'
+DRIVER_LOCATION = project_dir + '/resource/chromedriver.exe'
 
 class Game:
 
