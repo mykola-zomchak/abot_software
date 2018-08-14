@@ -1,10 +1,9 @@
 from abc import ABC, abstractmethod
-from types import FunctionType
 
-from field import Field
+from models.parsed_screen import ParsedScreen
 
 
 class Bot(ABC):
 
     @abstractmethod
-    def get_action(self, field: Field) -> FunctionType: pass
+    def make_action(self, parsed: ParsedScreen): pass
