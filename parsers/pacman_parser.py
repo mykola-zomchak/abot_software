@@ -48,18 +48,18 @@ class PacmanParser(ImageParser):
         if len(contours) == 0:
             return None
         return max(contours, key=lambda c: cv2.contourArea(c))
-    
+
     def _cookies(self, image: np.ndarray) -> list:
-        mask = cv2.inRange(image, COOKIE_LOWER_HSV, COOKIE_UPPER_HSV)
-        
-        kernel_square = np.ones((2,2), np.uint8)
+        mask = cv2.inRange(image, COOKIE_LOWER, COOKIE_UPPER)
+
+        kernel_square = np.ones((2, 2), np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel_square)
-        kernel_ellipse = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3,3)) 
+        kernel_ellipse = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
         mask = cv2.dilate(mask, kernel_ellipse, iterations=1)
-        
+
         contours = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[1]
-        return [self._center (c) for c in contours]
-    
+        return [self._center(c) for c in contours]
+
     def _center(self, contour: np.ndarray):
         M = cv2.moments(contour)
         try:
@@ -75,6 +75,8 @@ PACMAN_LOWER = np.array((25, 160, 140))
 PACMAN_UPPER = np.array((40, 255, 255))
 WALL_LOWER = np.array((110, 190, 190))
 WALL_UPPER = np.array((120, 230, 255))
+COOKIE_LOWER = np.array((160, 0, 140))
+COOKIE_UPPER = np.array((170, 80, 230))
 
 GHOSTS = (('Blinky', np.array((130, 100, 210)), np.array((180, 255, 255))),
           ('Pinky', np.array((160, 50, 50)), np.array((180, 100, 255))),

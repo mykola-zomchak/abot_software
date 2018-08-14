@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: 'Quadrit';
-    src: url('../css/Quadrit.ttf');
+    src: url('Quadrit.ttf');
 }
 
 * {
