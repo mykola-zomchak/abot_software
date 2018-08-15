@@ -1,7 +1,8 @@
-from bots.crazy_bot import CrazyBot
-from executors.pacman import Pacman
-from parsers.pacman_parser import PacmanParser
+from bots.flappy_bot import FlappyBot
+from executors.flappy import Flappy
+from parsers.flappy_parser import FlappyParser
 from runners.simple_runner import SimpleRunner
 
 runner = SimpleRunner()
-runner.run(Pacman(), PacmanParser(), CrazyBot())
+
+runner.run(Flappy(), FlappyParser(), FlappyBot())
