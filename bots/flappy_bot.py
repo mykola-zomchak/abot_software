@@ -1,6 +1,6 @@
 from bots.bot import Bot
 from models.field import  Field
-from action_executor import  go_up
+from action_executor import go_up
 import random
 
 class FlappyBot(Bot):

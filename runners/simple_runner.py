@@ -14,6 +14,7 @@ class SimpleRunner(Runner):
             cv2.namedWindow(game.window_name + ' analysis')
             while time() - start < how_long:
                 screen = self.shooter.get_screen(game.window_name)
+                cv2.waitKey(1000)
                 parsed = parser.parse(screen)
                 bot.make_action(parsed)
                 cv2.imshow("pacman", parsed.image)

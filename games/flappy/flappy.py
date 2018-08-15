@@ -2,6 +2,7 @@ from itertools import cycle
 import random
 import sys
 import os
+
 project_dir = os.getcwd()
 game_dir = project_dir + '\\games\\flappy\\'
 
