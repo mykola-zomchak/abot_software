@@ -1,24 +1,22 @@
-from typing import List
+from models.characters import Ghost, Pacman
+from models.parsed_screen import ParsedScreen
 
-from models.characters import *
+GHOSTS = ('Blinky', 'Pinky', 'Inky', 'Clyde')
 
 
-class Field:
-    def __init__(self):
-        self.pacman = Pacman()
-        self.ghosts = {g: Ghost(g) for g in GHOSTS}
-        self.has_bonus = False
-        self.cookies = []
-        self.powerups = []
-        self.round = 1
-        self.score = 0
-        self.lives = 2
-        self.image = None
+class Field(ParsedScreen):
+    pacman = Pacman()
+    ghosts = {g: Ghost(g) for g in GHOSTS}
+    has_bonus = False
+    cookies = []
+    powerups = []
+    round = 1
+    score = 0
+    lives = 2
+    image = None
 
     def update_pacman(self, coordinates):
         self.pacman.update(*coordinates)
 
-    def update_ghost(self, name,  coordinates):
+    def update_ghost(self, name, coordinates):
         self.ghosts[name].update(*coordinates)
-
-GHOSTS = ('Blinky', 'Pinky', 'Inky', 'Clyde')
