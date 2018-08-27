@@ -11,6 +11,10 @@ class Bot():
     #how many time launch bot to play game
     self.train_games = 5000
 
+    #size of square for mapping
+    self.x_size = 20
+    self.y_size = 10
+
     #exploration parameters
     self.exp_min = -3
     self.exp_max = 3
@@ -27,12 +31,16 @@ class Bot():
   def dump_qtable(self):
     pass
 
+  def map(self, x_dif, y_dif):
+    x_dif = int(x_dif) - int(x_dif%self.x_size)
+    y_dif = int(y_dif) - int(y_dif%self.y_size)
+    return (str(x_dif) + '_' +str(y_dif))
+
   def act(self):
     pass
 
   def update(self):
     pass
 
-  def map(self, x_dif, y_dif):
-    pass
+
 
