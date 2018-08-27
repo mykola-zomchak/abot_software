@@ -22,6 +22,11 @@ class Bot():
     self.exp_interval = (self.exp_max - self.exp_min) / self.train_games
     self.sigmoid = lambda x: 1/(1+np.exp(-x))
 
+  def __exit__(self, exc_type, exc_val, exc_tb):
+    self.dump_qtable()
+    self.write_game_count()
+
+
   @staticmethod
   def init_qtable():
     # x є [-40, 440], step = self.x_size
@@ -37,14 +42,19 @@ class Bot():
 
   def write_game_count(self):
     with open("games_count.txt", 'w') as f:
-      f.write(self.gamesCount)
+      f.write(self.games_count)
+      print("game number written")
 
   def load_games_count(self):
     with open("games_count.txt", 'r') as f:
+      print("game number loaded")
       return int(f.readline())
 
   def load_qtable(self):
-    pass
+    with open("qvalues.json") as f:
+      qtable = json.load(f)
+      print("Q table load!")
+      return qtable
 
   def dump_qtable(self, qtable):
     with open("qvalues.json") as f:
@@ -63,5 +73,3 @@ class Bot():
 
   def update(self):
     pass
-
-
