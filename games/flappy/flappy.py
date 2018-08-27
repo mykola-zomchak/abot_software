@@ -251,7 +251,7 @@ def mainGame(movementInfo):
 
 
 
-        if bot.action(-playerx + myPipe['x'], - playery + myPipe['y'], playerVelY):
+        if bot.action(-playerx + myPipe['x'], - playery + myPipe['y']):
             if playery > -2 * IMAGES['player'][0].get_height():
                 playerVelY = playerFlapAcc
                 playerFlapped = True
@@ -262,7 +262,8 @@ def mainGame(movementInfo):
                                upperPipes, lowerPipes)
         if crashTest[0]:
             # Update the q scores
-            bot.update_qvalues(-playerx + myPipe['x'], - playery + myPipe['y'], playerVelY, -2000)
+            bot.update()
+
             return {
                 'y': playery,
                 'groundCrash': crashTest[1],
@@ -272,11 +273,6 @@ def mainGame(movementInfo):
                 'score': score,
                 'playerVelY': playerVelY,
             }
-        elif crashTest[0] and not crashTest[1]:
-            bot.update_qvalues(-playerx + myPipe['x'], - playery + myPipe['y'], playerVelY, -2500)
-        else:
-            bot.update_qvalues(-playerx + myPipe['x'], - playery + myPipe['y'], playerVelY, 1 + score / 10)
-
 
         # check for score
         playerMidPos = playerx + IMAGES['player'][0].get_width() / 2

@@ -1,7 +1,10 @@
 import numpy as np
 
-
 class Bot():
+  # size of square for mapping
+  x_size = 20
+  y_size = 10
+
   def __init__(self):
     self.lr = 0.8
     self.discount = 0.9
@@ -11,10 +14,6 @@ class Bot():
     #how many time launch bot to play game
     self.train_games = 5000
 
-    #size of square for mapping
-    self.x_size = 20
-    self.y_size = 10
-
     #exploration parameters
     self.exp_min = -3
     self.exp_max = 3
@@ -23,7 +22,16 @@ class Bot():
 
   @staticmethod
   def init_qtable():
-    pass
+    # x є [-40, 440], step = self.x_size
+    # y є [-120, 440], step = self.y_size
+    qtable = {}
+    for x in range(-40, 440, Bot.x_size):
+      for y in range(-120, 440, Bot.y_size):
+        qtable[str(x)+'_'+str(y)] = [0, 0]
+    print(qtable)
+
+
+
 
   def load_qtable(self):
     pass
@@ -32,15 +40,19 @@ class Bot():
     pass
 
   def map(self, x_dif, y_dif):
+    # x є [- 40, 440]
+    # y є [-120, 440]
     x_dif = int(x_dif) - int(x_dif%self.x_size)
     y_dif = int(y_dif) - int(y_dif%self.y_size)
     return (str(x_dif) + '_' +str(y_dif))
 
-  def act(self):
+  def action(self, x_dif, y_dif):
     pass
 
   def update(self):
     pass
 
+bot = Bot()
 
+Bot.init_qtable()
 
