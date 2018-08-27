@@ -33,3 +33,6 @@ class Bot():
   def update(self):
     pass
 
+  def map(self, x_dif, y_dif):
+    pass
+
