@@ -8,15 +8,14 @@ class Bot():
   y_size = 10
 
   def __init__(self):
-
     self.lr = 0.8
     self.discount = 0.9
     self.load_qtable()
     self.game_dump = 20
-
     self.history = []
     self.last_state = "420_40"
     self.last_action = 0
+    self.statistic = []
 
     self.reward = {0:1, 1:-1000}
 
@@ -101,7 +100,17 @@ class Bot():
 
     return action
 
-  def update(self):
+  def write_statistic(self):
+    with open('statistic.txt', 'a') as f:
+        f.write(' '.join(str(data) for data in self.statistic))
+        f.write(' ')
+
+  def load_statistic(self):
+    with open('statistic.txt') as f:
+      self.statistic = [int(x) for x in f.read().split(' ')]
+
+
+  def update(self, score):
     #print("update")
     #print(self.qtable)
     history = list(reversed(self.history))
@@ -128,16 +137,27 @@ class Bot():
       self.qtable[prev_state][action] = self.qtable[prev_state][action] \
                                         + self.lr*(cur_reward + self.discount*max - self.qtable[prev_state][action])
       t+=1
+
+
       #print(cur_reward)
 
     #print(self.qtable)
 
     self.x += self.exp_interval*self.games_count
     #print("x=",self.x)
+
     self.games_count +=1
     self.dump_qtable()
     self.write_game_count()
-    self.history = []
 
-if __name__ == "__main__":
-  Bot.init_qtable()
+    self.statistic.append(self.games_count)
+    self.statistic.append(score)
+    self.write_statistic()
+
+    self.history = []
+    self.statistic = []
+
+
+
+#if __name__ == "__main__":
+#  Bot.init_qtable()

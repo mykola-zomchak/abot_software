@@ -262,7 +262,7 @@ def mainGame(movementInfo):
                                upperPipes, lowerPipes)
         if crashTest[0]:
             # Update the q scores
-            bot.update()
+            bot.update(score)
 
             return {
                 'y': playery,
